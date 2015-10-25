@@ -12,14 +12,14 @@ import java.net.URL;
 public class HessianSeaCatConnection extends AbstractHessianConnection
 {
         private URL _url;
-        private mobi.seacat.client.http.URLConnection _conn;
+        private com.teskalabs.seacat.android.client.http.URLConnection _conn;
 
         private int _statusCode;
         private String _statusMessage;
 
 //        private PosterOutputStream _outputStream = null;
 
-        HessianSeaCatConnection(URL url, mobi.seacat.client.http.URLConnection conn)
+        HessianSeaCatConnection(URL url, com.teskalabs.seacat.android.client.http.URLConnection conn)
         {
             _url = url;
             _conn = conn;
@@ -146,7 +146,7 @@ public class HessianSeaCatConnection extends AbstractHessianConnection
         {
             close();
 
-            mobi.seacat.client.http.URLConnection conn = _conn;
+            com.teskalabs.seacat.android.client.http.URLConnection conn = _conn;
             _conn = null;
 
             conn.disconnect();

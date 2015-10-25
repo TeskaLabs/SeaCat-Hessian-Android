@@ -3,12 +3,11 @@ package com.teskalabs.seacat.android.hessian;
 import com.caucho.hessian.client.HessianConnection;
 import com.caucho.hessian.client.HessianConnectionFactory;
 import com.caucho.hessian.client.HessianProxyFactory;
-import com.caucho.hessian.client.HessianURLConnection;
 
 import java.io.IOException;
 import java.net.URL;
 
-import mobi.seacat.client.SeaCatClient;
+import com.teskalabs.seacat.android.client.SeaCatClient;
 
 public class HessianSeaCatConnectionFactory implements HessianConnectionFactory
 {
@@ -26,7 +25,7 @@ public class HessianSeaCatConnectionFactory implements HessianConnectionFactory
 
     public HessianConnection open(URL url) throws IOException
     {
-        mobi.seacat.client.http.URLConnection conn = (mobi.seacat.client.http.URLConnection) SeaCatClient.open(url);
+        com.teskalabs.seacat.android.client.http.URLConnection conn = (com.teskalabs.seacat.android.client.http.URLConnection) SeaCatClient.open(url);
 
         long connectTimeout = _proxyFactory.getConnectTimeout();
 
