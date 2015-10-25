@@ -47,32 +47,10 @@ public class HessianActivity extends ActionBarActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_hessian, menu);
-        return true;
+    public void onClick(View v) throws IOException {
+        doHessianRequest();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            try {
-                doHessianRequest();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     private void doHessianRequest() throws IOException
     {
@@ -140,7 +118,7 @@ public class MainActivity extends ActionBarActivity {
 ##### Simple example of the Hessian client with SeaCat bridge usage in the Android app:
 
 ```java
-import import com.teskalabs.seacat.android.hessian.HessianSeaCatConnectionFactory;
+import com.teskalabs.seacat.android.hessian.HessianSeaCatConnectionFactory;
 
 public class MainActivity extends ActionBarActivity {
 
