@@ -33,16 +33,16 @@ Servlet API will be available at:
 
 ##### Simple example of the Hessian client usage in the Android app:
 
-```
+```java
 public class MainActivity extends ActionBarActivity {
 
     HessianProxyFactory hessianFactory = new HessianProxyFactory();
+    String hessianURL = "http://[your-server]:8080/HessianServer/HelloServlet";
+
 ...
 
 	private void doHessianRequest() throws IOException
 	{
-		String hessianURL = "http://[your-server]:8080/HessianServer/HelloServlet";
-
 		HelloService hello = (HelloService) hessianFactory.create(HelloService.class, hessianURL);
 		
 		final String output = hello.sayHelloTo("Android test");
