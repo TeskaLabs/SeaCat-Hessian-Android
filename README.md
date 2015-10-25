@@ -89,7 +89,7 @@ Servlet API will be available at:
 ##### Simple example of the Hessian client usage in the Android app:
 
 ```java
-import import com.caucho.hessian.client.HessianProxyFactory;
+import com.caucho.hessian.client.HessianProxyFactory;
 
 ...
 
@@ -106,8 +106,18 @@ public class MainActivity extends ActionBarActivity {
 		
 		final String output = hello.sayHelloTo("Android test");
     }
+```
+
+#### How to configure SeaCat gateway
+
+Insert following host configuration at `seacatd.conf`:  
 
 ```
+[host:hessianhost]
+uri=http://[your-server]:8080
+
+```
+
 
 #### How to add the SeaCat/Hessian bridge into your Android app
 
