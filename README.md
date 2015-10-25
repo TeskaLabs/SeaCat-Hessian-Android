@@ -34,10 +34,14 @@ Servlet API will be available at:
 ##### Simple example of the Hessian client usage in the Android app:
 
 ```java
+import import com.caucho.hessian.client.HessianProxyFactory;
+
+...
+
 public class MainActivity extends ActionBarActivity {
 
+	String hessianURL = "http://[your-server]:8080/HessianHelloServer/HelloServlet";
     HessianProxyFactory hessianFactory = new HessianProxyFactory();
-    String hessianURL = "http://[your-server]:8080/HessianServer/HelloServlet";
 
 ...
 
@@ -50,3 +54,42 @@ public class MainActivity extends ActionBarActivity {
 
 ```
 
+#### How to add the SeaCat/Hessian bridge into your Android app
+
+1. Copy `hessian/client/com` from this repo into `app/src/main/java` folder of your Android app. The result should look like this: `app/src/main/java/com/teskalabs/seacat/android/hessian`.
+
+2. Add import: import com.teskalabs.seacat.android.hessian.HessianSeaCatConnectionFactory;
+
+##### Simple example of the Hessian client with SeaCat bridge usage in the Android app:
+
+```java
+import import com.teskalabs.seacat.android.hessian.HessianSeaCatConnectionFactory;
+
+public class MainActivity extends ActionBarActivity {
+
+	String hessianURL = "http://[hessianhost].seacat/HessianHelloServer/HelloServlet";
+	HessianProxyFactory hessianFactory = new HessianProxyFactory();
+	HessianSeaCatConnectionFactory hessianSeaCatFactory = new HessianSeaCatConnectionFactory();
+
+...
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+    ...
+    
+    	// Inject SeaCat Factory into Hessian
+    	hessianSeaCatFactory.setHessianProxyFactory(hessianFactory);
+    	
+    ...
+	}
+
+...
+
+	private void doHessianRequest() throws IOException
+	{
+		HelloService hello = (HelloService) hessianFactory.create(HelloService.class, hessianURL);
+		
+		final String output = hello.sayHelloTo("Android test");
+    }
+
+```
